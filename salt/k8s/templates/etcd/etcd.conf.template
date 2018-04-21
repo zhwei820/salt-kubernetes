@@ -13,7 +13,7 @@ ETCD_LISTEN_CLIENT_URLS="https://{{ NODE_IP }}:2379,https://127.0.0.1:2379"
 #[cluster]
 ETCD_INITIAL_ADVERTISE_PEER_URLS="https://{{ NODE_IP }}:2380"
 # if you use different ETCD_NAME (e.g. test),
-# set ETCD_INITIAL_CLUSTER value for this name, i.e. "test=http://..."
+# set ETCD_INITIAL_CLUSTER value for this name, i.e. "test=https://..."
 ETCD_INITIAL_CLUSTER="{{ ETCD_CLUSTER }}"
 ETCD_INITIAL_CLUSTER_STATE="new"
 ETCD_INITIAL_CLUSTER_TOKEN="k8s-etcd-cluster"
