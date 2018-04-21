@@ -48,7 +48,7 @@ etcd-config:
     - mode: 644
     - template: jinja
     - defaults:
-        NODE_IP: {{ grains['fqdn_ip4'][0] }}
+        NODE_IP: {{ grains['fqdn_ip4'][0] if grains['fqdn_ip4'] else grains['ipv4'][-1] }}
         ETCD_NAME: {{ grains['etcd-name'] }}
         ETCD_CLUSTER: {{ pillar['ETCD_CLUSTER'] }}
 
@@ -59,8 +59,11 @@ etcd-service:
     - user: root
     - group: root
     - mode: 644
-    - watch:
-      - file: etcd-config
+    - template: jinja
+    - defaults:
+        NODE_IP: {{ grains['fqdn_ip4'][0] if grains['fqdn_ip4'] else grains['ipv4'][-1] }}
+        ETCD_NAME: {{ grains['etcd-name'] }}
+        ETCD_CLUSTER: {{ pillar['ETCD_CLUSTER'] }}
   cmd.run:
     - name: systemctl daemon-reload
     - watch:

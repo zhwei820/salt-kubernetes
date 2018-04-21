@@ -5,9 +5,18 @@ After=network.target
 [Service]
 Type=simple
 WorkingDirectory=/var/lib/etcd
-EnvironmentFile=-/opt/kubernetes/cfg/etcd.conf
+
+# EnvironmentFile=-/opt/kubernetes/cfg/etcd.conf
 # set GOMAXPROCS to number of processors
-ExecStart=/bin/bash -c "GOMAXPROCS=$(nproc) /opt/kubernetes/bin/etcd"
+
+ExecStart=/opt/kubernetes/bin/etcd --name $ETCD_NAME \
+--initial-advertise-peer-urls http://{{ NODE_IP }}:2380 \
+--listen-peer-urls http://{{ NODE_IP }}:2380 \
+--listen-client-urls http://{{ NODE_IP }}:2379,http://127.0.0.1:2379 \
+--advertise-client-urls http://{{ NODE_IP }}:2379 \
+--initial-cluster-token etcd-cluster-1 \
+--initial-cluster {{ ETCD_CLUSTER }} 
+--initial-cluster-state new
 
 [Install]
 WantedBy=multi-user.target
