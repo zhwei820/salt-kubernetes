@@ -28,7 +28,7 @@ ectd-csr-json:
     - mode: 644
     - template: jinja
     - defaults:
-        NODE_IP: {{ grains['fqdn_ip4'][0] }}
+        NODE_IP: {{ grains['fqdn_ip4'][0] if grains['fqdn_ip4'] else grains['ipv4'][-1] }}
 
 etcd-ssl:
   cmd.run:

@@ -1,11 +1,11 @@
 #设置Master的IP地址(必须修改)
-MASTER_IP: "192.168.56.20"
+MASTER_IP: "192.168.1.7"
 
 #设置ETCD集群访问地址（必须修改）
-ETCD_ENDPOINTS: "https://192.168.56.20:2379,https://192.168.56.21:2379,https://192.168.56.22:2379"
+ETCD_ENDPOINTS: "https://192.168.1.7:2379,https://192.168.1.100:2379,https://192.168.1.101:2379"
 
 #设置ETCD集群初始化列表（必须修改）
-ETCD_CLUSTER: "etcd-node1=https://192.168.56.20:2380,etcd-node2=https://192.168.56.21:2380,etcd-node3=https://192.168.56.22:2380"
+ETCD_CLUSTER: "etcd-node1=https://192.168.1.7:2380,etcd-node2=https://192.168.1.100:2380,etcd-node3=https://192.168.1.101:2380"
 
 #通过Grains FQDN自动获取本机IP地址，请注意保证主机名解析到本机IP地址
 NODE_IP: {{ grains['fqdn_ip4'][0] }}

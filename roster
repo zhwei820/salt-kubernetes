@@ -1,29 +1,26 @@
-linux-node1:
-  host: 192.168.56.20
+192.168.1.7:
+  host: 192.168.1.7
   user: root
   priv: /root/.ssh/id_rsa
-  minion_opts: 
-    grains:
-      k8s-role: master
-      etcd-role: node
-      etcd-name: etcd-node1
+  grains:
+    k8s-role: master
+    etcd-role: node
+    etcd-name: etcd-node1
 
-linux-node2:
-  host: 192.168.56.21
+192.168.1.100:
+  host: 192.168.1.100
   user: root
   priv: /root/.ssh/id_rsa
-  minion_opts:
-    grains:
-      k8s-role: node
-      etcd-role: node
-      etcd-name: etcd-node2
+  grains:
+    k8s-role: node
+    etcd-role: node
+    etcd-name: etcd-node2
 
-linux-node3:
-  host: 192.168.56.22
+192.168.1.101:
+  host: 192.168.1.101
   user: root
   priv: /root/.ssh/id_rsa
-  minion_opts:
-    grains:
-      k8s-role: node
-      etcd-role: node 
-      etcd-name: etcd-node3
+  grains:
+    k8s-role: node
+    etcd-role: node 
+    etcd-name: etcd-node3
