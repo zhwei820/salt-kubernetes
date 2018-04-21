@@ -1,14 +1,45 @@
-attempt=0
-while true; do
-  /opt/kubernetes/bin/etcdctl get /coreos.com/network/config 
-  
-    if (( attempt > 20 )); then
-        echo "timeout for waiting network config" > /opt/kubernetes/log/flannel-error.log
-        exit 2
-    fi
+1 第1台机器192.168.1.7上执行：
 
-    /opt/kubernetes/bin/etcdctl    mk /coreos.com/network/config "{\"Network\":\"10.2.0.0/16\"}" >/dev/null 2>&1
-    attempt=$((attempt+1))
-    sleep 3
-done
-wait
+ etcd --name infra0 --initial-advertise-peer-urls http://192.168.1.7:2380 --listen-peer-urls http://192.168.1.7:2380 --listen-client-urls http://192.168.1.7:2379,http://127.0.0.1:2379 --advertise-client-urls http://192.168.1.7:2379 --initial-cluster-token etcd-cluster-1 --initial-cluster infra0=http://192.168.1.7:2380,infra1=http://192.168.1.100:2380,infra2=http://192.168.1.101:2380 --initial-cluster-state new
+
+2 第2台机器192.168.1.100上执行：
+
+ etcd --name infra1 --initial-advertise-peer-urls http://192.168.1.100:2380 --listen-peer-urls http://192.168.1.100:2380 --listen-client-urls http://192.168.1.100:2379,http://127.0.0.1:2379 --advertise-client-urls http://192.168.1.100:2379 --initial-cluster-token etcd-cluster-1 --initial-cluster infra0=http://192.168.1.7:2380,infra1=http://192.168.1.100:2380,infra2=http://192.168.1.101:2380 --initial-cluster-state new
+
+3 第3台机器192.168.1.101上执行：
+
+ etcd --name infra2 --initial-advertise-peer-urls http://192.168.1.101:2380 --listen-peer-urls http://192.168.1.101:2380 --listen-client-urls http://192.168.1.101:2379,http://127.0.0.1:2379 --advertise-client-urls http://192.168.1.101:2379 --initial-cluster-token etcd-cluster-1 --initial-cluster infra0=http://192.168.1.7:2380,infra1=http://192.168.1.100:2380,infra2=http://192.168.1.101:2380 --initial-cluster-state new
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 1 第1台机器192.168.1.7上执行：
+
+ etcd --name infra0 --initial-advertise-peer-urls http://192.168.1.7:2380 --listen-peer-urls http://192.168.1.7:2380 --listen-client-urls http://192.168.1.7:2379,http://127.0.0.1:2379 --advertise-client-urls http://192.168.1.7:2379 --initial-cluster-token etcd-cluster-1 --initial-cluster infra0=http://192.168.1.7:2380,infra1=http://192.168.1.100:2380 --initial-cluster-state new
+
+2 第2台机器192.168.1.100上执行：
+
+ etcd --name infra1 --initial-advertise-peer-urls http://192.168.1.100:2380 --listen-peer-urls http://192.168.1.100:2380 --listen-client-urls http://192.168.1.100:2379,http://127.0.0.1:2379 --advertise-client-urls http://192.168.1.100:2379 --initial-cluster-token etcd-cluster-1 --initial-cluster infra0=http://192.168.1.7:2380,infra1=http://192.168.1.100:2380 --initial-cluster-state new
