@@ -19,7 +19,7 @@ kubectl-bin:
 
 kubectl-admin-cluster:
   cmd.run:
-    - name: /opt/kubernetes/bin/kubectl config set-cluster kubernetes --certificate-authority=/opt/kubernetes/ssl/ca.pem --embed-certs=true --server=https://{{ pillar['MASTER_IP'] }}:6443
+    - name: /opt/kubernetes/bin/kubectl config set-cluster kubernetes --certificate-authority=/opt/kubernetes/ssl/ca.pem --embed-certs=true --server=https://{{ pillar['MASTER_IP'] }}:8443
 
 kubectl-admin-credentials:
   cmd.run:
