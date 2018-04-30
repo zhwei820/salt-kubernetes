@@ -12,7 +12,7 @@ install:
 
 config_haproxy:
   file.managed:
-    - name: 
+    - name: /etc/haproxy/haproxy.cfg 
     - source: salt://k8s/templates/haproxy/haproxy.cfg
     - user: root
     - group: root
@@ -22,7 +22,7 @@ config_haproxy:
 
 config_keepalived:
   file.managed:
-    - name: 
+    - name: /etc/keepalived/keepalived.conf
     - source: salt://k8s/templates/haproxy/keepalived.cfg
     - user: root
     - group: root
