@@ -7,6 +7,14 @@
     etcd-role: node
     etcd-name: etcd-node1
 
+192.168.1.8:
+  host: 192.168.1.8
+  user: root
+  priv: /root/.ssh/id_rsa
+  grains:
+    k8s-role: master
+
+
 192.168.1.100:
   host: 192.168.1.100
   user: root
@@ -22,5 +30,5 @@
   priv: /root/.ssh/id_rsa
   grains:
     k8s-role: node
-    etcd-role: node 
+    etcd-role: node
     etcd-name: etcd-node3
