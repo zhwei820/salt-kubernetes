@@ -125,7 +125,8 @@ ETCD_ENDPOINTS: "https://192.168.56.20:2379,https://192.168.56.21:2379,https://1
 ETCD_CLUSTER: "etcd-node1=https://192.168.56.20:2380,etcd-node2=https://192.168.56.21:2380,etcd-node3=https://192.168.56.22:2380"
 
 #通过Grains FQDN自动获取本机IP地址，请注意保证主机名解析到本机IP地址
-NODE_IP: {{ grains['fqdn_ip4'][0] }}
+NODE_IP: {{ grains['ipv4'][-1] }}
+
 
 #设置BOOTSTARP的TOKEN，可以自己生成
 BOOTSTRAP_TOKEN: "ad6d5bb607a186796d8861557df0d17f"

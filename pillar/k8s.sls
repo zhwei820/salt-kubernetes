@@ -8,7 +8,7 @@ ETCD_ENDPOINTS: "http://192.168.1.7:2379,http://192.168.1.100:2379,http://192.16
 ETCD_CLUSTER: "etcd-node1=http://192.168.1.7:2380,etcd-node2=http://192.168.1.100:2380,etcd-node3=http://192.168.1.101:2380"
 
 #通过Grains FQDN自动获取本机IP地址，请注意保证主机名解析到本机IP地址
-NODE_IP: {{ grains['fqdn_ip4'][0] if grains['fqdn_ip4'] else grains['ipv4'][-1] }}
+NODE_IP: {{ grains['ipv4'][-1] }}
 
 
 #设置BOOTSTARP的TOKEN，可以自己生成

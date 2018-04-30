@@ -28,7 +28,7 @@ ectd-csr-json:
     - mode: 644
     - template: jinja
     - defaults:
-        NODE_IP: {{ grains['fqdn_ip4'][0] if grains['fqdn_ip4'] else grains['ipv4'][-1] }}
+        NODE_IP: {{ grains['ipv4'][-1] }}
 
 etcd-ssl:
   cmd.run:
@@ -48,7 +48,7 @@ etcd-config:
     - mode: 644
     - template: jinja
     - defaults:
-        NODE_IP: {{ grains['fqdn_ip4'][0] if grains['fqdn_ip4'] else grains['ipv4'][-1] }}
+        NODE_IP: {{ grains['ipv4'][-1] }}
         ETCD_NAME: {{ grains['etcd-name'] }}
         ETCD_CLUSTER: {{ pillar['ETCD_CLUSTER'] }}
 
@@ -61,7 +61,7 @@ etcd-service:
     - mode: 644
     - template: jinja
     - defaults:
-        NODE_IP: {{ grains['fqdn_ip4'][0] if grains['fqdn_ip4'] else grains['ipv4'][-1] }}
+        NODE_IP: {{ grains['ipv4'][-1] }}
         ETCD_NAME: {{ grains['etcd-name'] }}
         ETCD_CLUSTER: {{ pillar['ETCD_CLUSTER'] }}
   cmd.run:
